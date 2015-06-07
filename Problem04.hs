@@ -23,7 +23,7 @@ solve1 0 (x:xs) _ = x
 solve1 k (x:xs) ys = solve1 (k-1) xs ys
 
 -- Convenient wrapper for the O(log n) solution.
-solve2 :: Show a => Ord a => Int -> [a] -> [a] -> a
+solve2 :: Ord a => Int -> [a] -> [a] -> a
 solve2 k xs ys = search k a1 (bounds a1) a2 (bounds a2)
   where
     a1 = listArray (0, length xs - 1) xs
@@ -32,7 +32,7 @@ solve2 k xs ys = search k a1 (bounds a1) a2 (bounds a2)
 -- O(log |a1| + log |a2|) solution.
 -- Find the k-th smallest element in union of a1[low1..high1] and a2[low2..high2].
 -- All array bounds are inclusive.
-search :: Show a => Ord a => Int -> Array Int a -> (Int, Int) -> Array Int a -> (Int, Int) -> a
+search :: Ord a => Int -> Array Int a -> (Int, Int) -> Array Int a -> (Int, Int) -> a
 search k a1 (low1, high1) a2 (low2, high2)
     -- Trivial case: one of the arrays is empty.
     | low1 > high1 = a2 ! (low2 + k)
@@ -64,7 +64,7 @@ search k a1 (low1, high1) a2 (low2, high2)
 
 -- Alternative solution, inspired by the book.
 -- Convenient wrapper for the O(log n) solution.
-solve2' :: Show a => Ord a => Int -> [a] -> [a] -> a
+solve2' :: Ord a => Int -> [a] -> [a] -> a
 solve2' k xs ys = search' k a1 (bounds a1) a2 (bounds a2)
   where
     a1 = listArray (0, length xs - 1) xs
@@ -72,7 +72,7 @@ solve2' k xs ys = search' k a1 (bounds a1) a2 (bounds a2)
 
 -- Find the k-th smallest element in union of a1[low1..high1] and a2[low2..high2].
 -- All array bounds are inclusive.
-search' :: Show a => Ord a => Int -> Array Int a -> (Int, Int) -> Array Int a -> (Int, Int) -> a
+search' :: Ord a => Int -> Array Int a -> (Int, Int) -> Array Int a -> (Int, Int) -> a
 search' k a1 (low1, high1) a2 (low2, high2)
     -- Trivial case: one of the arrays is empty.
     | low1 > high1 = a2 ! (low2 + k)
